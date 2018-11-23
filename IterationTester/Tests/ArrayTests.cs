@@ -7,12 +7,20 @@ namespace IterationTester.Tests
 {
     public class ArrayTests
     {
-        public static void ArrayTestRunner(int iterationCount, DataClass[] item1, DataClass[] item2, DataClass[] item3, DataClass[] item4)
+        public static void ArrayTestRunner(int iterationCount)
         {
-            long forArray = ForArrayTest(item1, (item1.Length / 2));
-            long forEachArray = ForEachArrayTest(item2, (item3.Length / 2));
-            long LinqArray = LinqArrayTest(item3, (item3.Length / 2));
-            long PLinqArray = PLinqArrayTest(item4, (item4.Length / 2));
+            Console.Out.WriteLine("Running Array Test for Iteration");
+
+            DataClass[] array1 = new DataClass[iterationCount];
+            DataClass[] array2 = new DataClass[iterationCount];
+            DataClass[] array3 = new DataClass[iterationCount];
+            DataClass[] array4 = new DataClass[iterationCount];
+            GenArrayData(iterationCount, array1, array2, array3, array4);
+
+            long forArray = ForArrayTest(array1, (array1.Length / 2));
+            long forEachArray = ForEachArrayTest(array2, (array2.Length / 2));
+            long LinqArray = LinqArrayTest(array3, (array3.Length / 2));
+            long PLinqArray = PLinqArrayTest(array4, (array4.Length / 2));
             using (var db = new iterationDbContext())
             {
                 db.Results.Add(new IterationResult
@@ -44,6 +52,29 @@ namespace IterationTester.Tests
                     Ticks = PLinqArray
                 });
                 db.SaveChanges();
+            }
+        }
+
+        public static void GenArrayData(
+          int iterationsCount,
+          DataClass[] array1, DataClass[] array2, DataClass[] array3, DataClass[] array4
+          )
+        {
+            for (int i = 0; i < iterationsCount; i++)
+            {
+                array1[i] = new DataClass(i, "Array1" + i, "Array1" + i, DateTime.Today.Ticks, Guid.NewGuid());
+            }
+            for (int i = 0; i < iterationsCount; i++)
+            {
+                array2[i] = new DataClass(i, "Array2" + i, "Array2" + i, DateTime.Today.Ticks, Guid.NewGuid());
+            }
+            for (int i = 0; i < iterationsCount; i++)
+            {
+                array3[i] = new DataClass(i, "Array3" + i, "Array3" + i, DateTime.Today.Ticks, Guid.NewGuid());
+            }
+            for (int i = 0; i < iterationsCount; i++)
+            {
+                array4[i] = new DataClass(i, "Array4" + i, "Array4" + i, DateTime.Today.Ticks, Guid.NewGuid());
             }
         }
 

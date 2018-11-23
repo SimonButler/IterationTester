@@ -10,8 +10,18 @@ namespace IterationTester.Tests
 {
     class ArrayListTests
     {
-        public static void ArrayListTestRunner(int iterationCount, ArrayList alist1, ArrayList alist2, ArrayList alist3, ArrayList alist4)
+        public static void ArrayListTestRunner(int iterationCount)
         {
+            Console.Out.WriteLine("Running ArrayList Test for Iteration");
+
+            ArrayList alist1 = new ArrayList();
+            ArrayList alist2 = new ArrayList();
+            ArrayList alist3 = new ArrayList();
+            ArrayList alist4 = new ArrayList();
+            GenArrayListData(iterationCount, alist1, alist2, alist3, alist4);
+
+
+
             long forArrayList = ForArrayListTest(alist1, (alist1.Count / 2));
             long forEachArrayList = ForEachArrayListTest(alist2, (alist2.Count / 2));
             long LinqArrayList = LinqArrayListTest(alist3, (alist3.Count / 2));
@@ -48,6 +58,30 @@ namespace IterationTester.Tests
                 });
                 db.SaveChanges();
             }
+        }
+
+        public static void GenArrayListData(
+          int iterationsCount,
+          ArrayList alist1, ArrayList alist2, ArrayList alist3, ArrayList alist4
+          )
+        {
+            for (int i = 0; i < iterationsCount; i++)
+            {
+                alist1.Add(new DataClass(i, "alist1" + i, "alist1" + i, DateTime.Today.Ticks, Guid.NewGuid()));
+            }
+            for (int i = 0; i < iterationsCount; i++)
+            {
+                alist2.Add(new DataClass(i, "alist2" + i, "alist2" + i, DateTime.Today.Ticks, Guid.NewGuid()));
+            }
+            for (int i = 0; i < iterationsCount; i++)
+            {
+                alist3.Add(new DataClass(i, "alist3" + i, "alist3" + i, DateTime.Today.Ticks, Guid.NewGuid()));
+            }
+            for (int i = 0; i < iterationsCount; i++)
+            {
+                alist4.Add(new DataClass(i, "alist4" + i, "alist4" + i, DateTime.Today.Ticks, Guid.NewGuid()));
+            }
+
         }
 
         public static long ForEachArrayListTest(ArrayList items, int idToCheck)
