@@ -46,6 +46,12 @@ namespace TestApp
             ArrayList alist2 = new ArrayList();
             ArrayList alist3 = new ArrayList();
             ArrayList alist4 = new ArrayList();
+            //More Datatypes to possibly add
+            LinkedList<DataClass> llist1 = new LinkedList<DataClass>();
+            SortedList sl = new SortedList();
+            IEnumerable<DataClass> ienumerable1;
+            Dictionary<IDictionary, DataClass> dictionary1 = new Dictionary<IDictionary, DataClass>();
+
 
             Populator.GenData(iterationsCount,
                 array1, array2, array3, array4,
